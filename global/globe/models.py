@@ -17,6 +17,9 @@ class ActiveUserManager(UserManager, ActiveManager):
 
 
 class Picture(CreatedModifiedMixin, ActiveMixin, LocationMixin):
+    """
+    Picture model that is location aware.
+    """
     image_file = ImageField(upload_to="pics")
     owner = models.ForeignKey(settings.AUTH_USER_MODEL,
                               related_name='pictures')
@@ -25,6 +28,12 @@ class Picture(CreatedModifiedMixin, ActiveMixin, LocationMixin):
 
 
 class User(AbstractBaseUser, PermissionsMixin, ActiveMixin):
+    """
+    User model that is slightly different from Django's base User model.
+
+    Username can only contain alphanumerics, -, ., and _.
+    Email must be unique and is required.
+    """
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=30, unique=True,
         help_text='30 characters or fewer. Letters, numbers and '

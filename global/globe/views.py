@@ -12,11 +12,17 @@ from .serializers import PictureSerializer, UserSerializer
 
 
 class HomeView(TemplateView):
+    """
+    Returns initial HTML file that will load JS frontend.
+    """
     template_name = "base.html"
 
 
 @api_view(('GET',))
 def api_root(request, format=None):
+    """
+    Offers navigation hints/links to API users.
+    """
     return Response({
         'pictures': reverse('picture-list', request=request, format=format),
         'users': reverse('user-list', request=request, format=format),
@@ -24,6 +30,11 @@ def api_root(request, format=None):
 
 
 class PictureList(ListCreateAPIView):
+    """
+    Base API endpoint for Pictures.
+
+    Provides HEAD, GET, OPTIONS, and POST.
+    """
     queryset = Picture.objects.get_active()
     serializer_class = PictureSerializer
 
@@ -32,6 +43,11 @@ class PictureList(ListCreateAPIView):
 
 
 class PictureDetail(RetrieveUpdateDestroyAPIView):
+    """
+    Details of a Picture.
+
+    Provides HEAD, GET, PUT, OPTIONS, DELETE.
+    """
     queryset = Picture.objects.get_active()
     serializer_class = PictureSerializer
 
@@ -40,10 +56,20 @@ class PictureDetail(RetrieveUpdateDestroyAPIView):
 
 
 class UserList(ListAPIView):
+    """
+    Base API endpoint for Users.
+
+    Provides HEAD, GET, OPTIONS.
+    """
     model = User
     serializer_class = UserSerializer
 
 
 class UserDetail(RetrieveAPIView):
+    """
+    Details of a User.
+
+    Provides HEAD, GET, OPTIONS.
+    """
     model = User
     serializer_class = UserSerializer
