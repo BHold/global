@@ -10,7 +10,7 @@
 
     {% block robots %}{% endblock %}
 
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}{% endblock title %}</title>
 
     <!--<link href="{{ STATIC_URL }}images/favicon-brian.ico" rel="shortcut icon"/>
 
@@ -31,7 +31,7 @@
 
 <body>
     <div class="main" role="main">
-        {% block main %}{% endblock %}
+        {% block main %}{% endblock main %}
     </div>
 
     {% if debug %}

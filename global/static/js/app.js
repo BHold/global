@@ -1,5 +1,4 @@
 require.config({
-    baseUrl: "../static/js",
     paths: {
         jquery: 'external/jquery',
         underscore: 'external/underscore',
@@ -17,6 +16,9 @@ require.config({
         },
         d3: {
             exports: 'd3'
+        },
+        topojson: {
+            exports: 'topojson'
         },
     }
 });

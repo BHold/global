@@ -3,22 +3,17 @@ from unipath import Path
 
 PROJECT_ROOT = Path(__file__).ancestor(3)
 
-TIME_ZONE = 'America/New_York'
+TIME_ZONE = 'UTC'
 
 LANGUAGE_CODE = 'en-us'
 
 SITE_ID = 1
 
-# If you set this to False, Django will make some optimizations so as not
-# to load the internationalization machinery.
-USE_I18N = True
+USE_I18N = False
 
-# If you set this to False, Django will not format dates, numbers and
-# calendars according to the current locale.
-USE_L10N = True
+USE_L10N = False
 
-# If you set this to False, Django will not use timezone-aware datetimes.
-USE_TZ = True
+USE_TZ = False
 
 MEDIA_ROOT = PROJECT_ROOT.child('media')
 
@@ -69,13 +64,23 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admindocs',
 
-    'south',
     'grappelli',
+    'rest_framework',
+    'sorl.thumbnail',
+    'south',
 
     'django.contrib.admin',  # Grappelli needs to be installed before admin
 
+    'core',
     'globe',
 )
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+        'globe.permissions.IsOwnerOrReadOnly'
+    )
+}
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -105,3 +110,5 @@ LOGGING = {
         },
     }
 }
+
+AUTH_USER_MODEL = 'globe.User'
