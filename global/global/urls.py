@@ -26,9 +26,9 @@ urlpatterns = patterns('',
     # Static Media
     (r'static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
 
-    # Main
-    url(r'^$', HomeView.as_view(), name="home"),
-
     # API
     url(r'^api/', include(api_patterns)),
+
+    # Main
+    url(r'^$', HomeView.as_view(), name="home"),
 )

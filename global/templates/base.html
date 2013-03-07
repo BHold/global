@@ -31,14 +31,11 @@
 
 <body>
     <div class="main" role="main">
+        <svg></svg>
         {% block main %}{% endblock main %}
     </div>
 
-    {% if debug %}
-        <script src="{{ STATIC_URL }}js/require.js" data-main="{{ STATIC_URL }}js/app.js"></script>
-    {% else %}
-        <script src="{{ STATIC_URL }}js/require.js" data-main="{{ STATIC_URL }}js/app.js"></script>
-    {% endif %}
+    <script src="{{ STATIC_URL }}js/require.js" data-main="{{ STATIC_URL }}js/startup.js"></script>
 
     <!--<script type="text/javascript">
     var _gaq = _gaq || [];

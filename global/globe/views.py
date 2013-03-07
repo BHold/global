@@ -35,11 +35,17 @@ class PictureList(ListCreateAPIView):
 
     Provides HEAD, GET, OPTIONS, and POST.
     """
-    queryset = Picture.objects.get_active()
     serializer_class = PictureSerializer
 
     def pre_save(self, obj):
         obj.owner = self.request.user
+
+    def get_queryset(self):
+        queryset = Picture.objects.get_active()
+        username = self.request.QUERY_PARAMS.get('username', None)
+        if username:
+            queryset = queryset.filter(owner__username__iexact=username)
+        return queryset
 
 
 class PictureDetail(RetrieveUpdateDestroyAPIView):

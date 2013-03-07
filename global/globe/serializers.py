@@ -4,7 +4,7 @@ from django.conf import settings
 
 from rest_framework.serializers import (HyperlinkedModelSerializer,
                                         HyperlinkedRelatedField,
-                                        WritableField)
+                                        WritableField, Field)
 
 from .models import Picture, User
 
@@ -38,12 +38,13 @@ class PictureSerializer(HyperlinkedModelSerializer):
     Owner of picture is returned as a link, and the image_file path is
     returned as the full url to the image.
     """
+    id = Field(source='id')
     owner = HyperlinkedRelatedField(view_name='user-detail', read_only=True)
     image_file = StaticDomainAwareField(source='image_file')
 
     class Meta:
         model = Picture
-        fields = ('url', 'image_file', 'owner', 'latitude', 'longitude',
+        fields = ('id', 'url', 'image_file', 'owner', 'latitude', 'longitude',
                   'country', 'city', 'country_code')
 
 
