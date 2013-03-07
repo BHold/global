@@ -4,7 +4,7 @@ require.config({
         underscore: 'external/underscore',
         backbone: 'external/backbone',
         d3: 'external/d3',
-        topojson: 'external/topojson'
+        topojson: 'external/topojson',
     },
     shim: {
         underscore: {
