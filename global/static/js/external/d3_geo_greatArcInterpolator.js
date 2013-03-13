@@ -1,7 +1,7 @@
 define(function() {
     /* Taken entirely from Jason Davies: http://bl.ocks.org/jasondavies/4183701 */
 
-    function wrapper(roll) {
+    function wrapper() {
         var d3_radians = Math.PI / 180;
         var x0, y0, cy0, sy0, kx0, ky0,
             x1, y1, cy1, sy1, kx1, ky1,
@@ -17,7 +17,6 @@ define(function() {
             return [
             Math.atan2(y, x) / d3_radians,
             Math.atan2(z, Math.sqrt(x * x + y * y)) / d3_radians,
-            roll /* Added to allow definable roll, in our case Earth's natural tilt */
             ];
         }
 
